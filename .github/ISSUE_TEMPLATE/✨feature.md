@@ -1,5 +1,5 @@
 ---
-name: 'Feature: '
+name: "✨Feature"
 about: Describe the feature behavior
 title: ''
 labels: enhancement
