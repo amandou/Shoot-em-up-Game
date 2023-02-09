@@ -27,22 +27,48 @@ public class PlayerController : MonoBehaviour
         float verticalMovement = Input.GetAxis("Vertical");
 
         Vector2 direction = new Vector2(horizontalMovement, verticalMovement).normalized;
-        
+
         PlayerRotation();
-        
+
         rigidbody.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
     }
-    private void PlayerRotation()
+
+    private void PlayerRotation() 
     {
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
-            transform.Rotate(Vector3.forward * rotation * Time.deltaTime);
-        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
-            transform.Rotate(-Vector3.forward * rotation * Time.deltaTime);
+        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -45);
+        }
         else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
-            transform.Rotate(-Vector3.forward * rotation * Time.deltaTime);
+        {
+            transform.rotation = Quaternion.Euler(0, 0, playerPosition.z - 135);
+        }
         else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
-            transform.Rotate(Vector3.forward * rotation * Time.deltaTime);
+        {
+            transform.rotation = Quaternion.Euler(0, 0, playerPosition.z + 135);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, playerPosition.z + 45);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+
     }
-
-
 }
