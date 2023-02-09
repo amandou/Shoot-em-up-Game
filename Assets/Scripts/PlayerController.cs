@@ -1,23 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Rigidbody2D bulletPrefab;
+    public Transform shootTransform;
 
     [SerializeField] private float speed;
     [SerializeField] private float rotation;
 
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D playerRigidbody;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-
-    void FixedUpdate()
+    void Update()
     {
+        SingleShoot();
         PlayerMovement();
     }
 
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerRotation();
 
-        rigidbody.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
+        playerRigidbody.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
     }
 
     private void PlayerRotation() 
@@ -71,4 +72,19 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void SingleShoot()
+    {
+        Shoot();
+    }
+
+
+    private void Shoot()
+    {
+        var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
+        var bulletVelocity = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+        Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
+        bulletRigidbody.velocity = -100 * Time.fixedDeltaTime * bulletVelocity;
+    }
+    
 }
