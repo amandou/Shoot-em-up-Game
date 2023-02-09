@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Rigidbody2D bulletPrefab;
+    public Transform shootTransform;
 
     [SerializeField] private float speed;
     [SerializeField] private float rotation;
+    [SerializeField] private float shootCoolDown;
 
-    private Rigidbody2D rigidbody;
+    [SerializeField] private List<Transform> primaryWeaponSpawnPoints = new List<Transform>();
+    [SerializeField] private List<Transform> secondaryWeaponSpawnPoints = new List<Transform>();
+
+    public BulletSo singleShotBulet;
+    public BulletSo tripleShotBulet;
+
+    private bool _canShoot = true;
+    private Rigidbody2D playerRigidbody;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-
-    void FixedUpdate()
+    void Update()
     {
+        //SingleShoot();
+        TripleShoot();
         PlayerMovement();
     }
 
@@ -30,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerRotation();
 
-        rigidbody.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
+        playerRigidbody.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
     }
 
     private void PlayerRotation() 
@@ -70,5 +81,38 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
 
+    }
+
+    private void SingleShoot()
+    {
+        Shoot(primaryWeaponSpawnPoints, singleShotBulet);
+    }
+
+    private void TripleShoot()
+    {
+        Shoot(secondaryWeaponSpawnPoints, tripleShotBulet);
+    }
+
+    private void Shoot(List<Transform> spawnPoints, BulletSo bulletSo)
+    {
+        if (_canShoot)
+        {
+            foreach (var spawnPoint in spawnPoints)
+            {
+                var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
+                var bulletDirection = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+
+                Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+                bulletRigidbody.velocity = -bulletSo.Speed * Time.fixedDeltaTime * bulletDirection;
+            }
+            StartCoroutine(ShootCoolDown(bulletSo.CoolDown));
+        }
+    }
+
+    private IEnumerator ShootCoolDown(float shootCoolDown)
+    {
+        _canShoot = false;
+        yield return new WaitForSeconds(shootCoolDown);
+        _canShoot = true;
     }
 }
