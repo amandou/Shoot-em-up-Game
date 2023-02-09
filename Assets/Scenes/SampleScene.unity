@@ -538,8 +538,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4221975376070287205, guid: 1f022f2f44de41e44aacce5411ca0126, type: 3}
   shootTransform: {fileID: 1713159173}
-  speed: 50
+  speed: 100
   rotation: 100
+  shootCoolDown: 0.4
 --- !u!61 &1957276526
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private float rotation;
+    [SerializeField] private float shootCoolDown;
 
+    private bool _canShoot = true;
     private Rigidbody2D playerRigidbody;
 
     void Start()
@@ -78,13 +80,23 @@ public class PlayerController : MonoBehaviour
         Shoot();
     }
 
-
     private void Shoot()
     {
-        var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
-        var bulletVelocity = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
-        Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
-        bulletRigidbody.velocity = -100 * Time.fixedDeltaTime * bulletVelocity;
+        if (_canShoot)
+        {
+            var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
+            var bulletVelocity = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+            Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
+            bulletRigidbody.velocity = -100 * Time.fixedDeltaTime * bulletVelocity;
+            StartCoroutine(ShootCoolDown());
+        }
+    }
+
+    private IEnumerator ShootCoolDown()
+    {
+        _canShoot = false;
+        yield return new WaitForSeconds(shootCoolDown);
+        _canShoot = true;
     }
     
 }
