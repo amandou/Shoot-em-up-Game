@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotation;
     [SerializeField] private float shootCoolDown;
 
+    [SerializeField] private List<Transform> PrimaryWeaponSpawnPoints = new List<Transform>();
+    [SerializeField] private List<Transform> SecondaryWeaponSpawnPoints = new List<Transform>();
+
     private bool _canShoot = true;
     private Rigidbody2D playerRigidbody;
 
@@ -20,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        SingleShoot();
+        TripleShoot();
         PlayerMovement();
     }
 
@@ -77,17 +81,25 @@ public class PlayerController : MonoBehaviour
 
     private void SingleShoot()
     {
-        Shoot();
+        Shoot(PrimaryWeaponSpawnPoints);
     }
 
-    private void Shoot()
+    private void TripleShoot()
+    {
+        Shoot(SecondaryWeaponSpawnPoints);
+    }
+
+    private void Shoot(List<Transform> spawnPoints)
     {
         if (_canShoot)
         {
-            var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
-            var bulletVelocity = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
-            Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, shootTransform.position, Quaternion.identity);
-            bulletRigidbody.velocity = -100 * Time.fixedDeltaTime * bulletVelocity;
+            foreach (var spawnPoint in spawnPoints)
+            {
+                var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
+                var bulletVelocity = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+                Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+                bulletRigidbody.velocity = -100 * Time.fixedDeltaTime * bulletVelocity;
+            }
             StartCoroutine(ShootCoolDown());
         }
     }
@@ -98,5 +110,4 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(shootCoolDown);
         _canShoot = true;
     }
-    
 }
