@@ -709,7 +709,14 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4221975376070287205, guid: 1f022f2f44de41e44aacce5411ca0126, type: 3}
   shootTransform: {fileID: 1713159173}
   speed: 100
+  rotation: 0
   shootCoolDown: 0.4
+  primaryWeaponSpawnPoints:
+  - {fileID: 1713159173}
+  secondaryWeaponSpawnPoints:
+  - {fileID: 1713159173}
+  - {fileID: 1412098987}
+  - {fileID: 1715984073}
   singleShotBulet: {fileID: 11400000, guid: f5226c61f27138f4a94bcaa39a8cbfa4, type: 2}
   tripleShotBulet: {fileID: 11400000, guid: 54196ae79ad71714f93be35a3408e2b4, type: 2}
 --- !u!61 &1957276526
