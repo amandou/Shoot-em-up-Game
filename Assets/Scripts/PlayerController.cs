@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotation;
     [SerializeField] private float shootCoolDown;
 
-    [SerializeField] private List<Transform> PrimaryWeaponSpawnPoints = new List<Transform>();
-    [SerializeField] private List<Transform> SecondaryWeaponSpawnPoints = new List<Transform>();
+    [SerializeField] private List<Transform> primaryWeaponSpawnPoints = new List<Transform>();
+    [SerializeField] private List<Transform> secondaryWeaponSpawnPoints = new List<Transform>();
+
+    public BulletSo singleShotBulet;
+    public BulletSo tripleShotBulet;
 
     private bool _canShoot = true;
     private Rigidbody2D playerRigidbody;
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //SingleShoot();
         TripleShoot();
         PlayerMovement();
     }
@@ -81,30 +85,31 @@ public class PlayerController : MonoBehaviour
 
     private void SingleShoot()
     {
-        Shoot(PrimaryWeaponSpawnPoints);
+        Shoot(primaryWeaponSpawnPoints, singleShotBulet);
     }
 
     private void TripleShoot()
     {
-        Shoot(SecondaryWeaponSpawnPoints);
+        Shoot(secondaryWeaponSpawnPoints, tripleShotBulet);
     }
 
-    private void Shoot(List<Transform> spawnPoints)
+    private void Shoot(List<Transform> spawnPoints, BulletSo bulletSo)
     {
         if (_canShoot)
         {
             foreach (var spawnPoint in spawnPoints)
             {
                 var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
-                var bulletVelocity = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+                var bulletDirection = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+
                 Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
-                bulletRigidbody.velocity = -100 * Time.fixedDeltaTime * bulletVelocity;
+                bulletRigidbody.velocity = -bulletSo.Speed * Time.fixedDeltaTime * bulletDirection;
             }
-            StartCoroutine(ShootCoolDown());
+            StartCoroutine(ShootCoolDown(bulletSo.CoolDown));
         }
     }
 
-    private IEnumerator ShootCoolDown()
+    private IEnumerator ShootCoolDown(float shootCoolDown)
     {
         _canShoot = false;
         yield return new WaitForSeconds(shootCoolDown);
