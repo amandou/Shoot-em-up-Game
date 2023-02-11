@@ -22,11 +22,11 @@ public class ScoreSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerBullet.onScoreUpdate += UpdateScore;
+        EnemyHealth.onScoreUpdate += UpdateScore;
     }
 
     private void OnDisable()
     {
-        PlayerBullet.onScoreUpdate -= UpdateScore;
+        EnemyHealth.onScoreUpdate -= UpdateScore;
     }
 }

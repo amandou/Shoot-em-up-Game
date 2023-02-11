@@ -27316,6 +27316,7 @@ GameObject:
   - component: {fileID: 127666931}
   - component: {fileID: 127666930}
   - component: {fileID: 127666934}
+  - component: {fileID: 127666935}
   m_Layer: 0
   m_Name: EnemyType1
   m_TagString: Enemy
@@ -27331,11 +27332,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127666929}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -27450,6 +27451,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 4f3b733cb329fe74cae2bd33394fa9b3, type: 2}
+--- !u!114 &127666935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127666929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b887cd762861d846be5144d58916e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  maxHealth: 20
+  canTakeDamage: 0
+  isDead: 0
+  invencibilityCooldown: 0.5
 --- !u!1 &261579697
 GameObject:
   m_ObjectHideFlags: 0
@@ -33944,6 +33962,7 @@ GameObject:
   - component: {fileID: 1417236360}
   - component: {fileID: 1417236359}
   - component: {fileID: 1417236363}
+  - component: {fileID: 1417236364}
   m_Layer: 0
   m_Name: EnemyType2
   m_TagString: Enemy
@@ -33963,7 +33982,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -34078,6 +34097,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: f39dc218d3222c740ae167af4f0211c9, type: 2}
+--- !u!114 &1417236364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417236358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b887cd762861d846be5144d58916e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  maxHealth: 20
+  canTakeDamage: 0
+  isDead: 0
+  invencibilityCooldown: 1
 --- !u!1 &1432912586
 GameObject:
   m_ObjectHideFlags: 0
@@ -34340,6 +34376,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6606444581495715664, guid: 1d03133378509d14f8ded5fdae058c21, type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606444581495715664, guid: 1d03133378509d14f8ded5fdae058c21, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606444581495715664, guid: 1d03133378509d14f8ded5fdae058c21, type: 3}
+      propertyPath: invencibilityCooldown
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8433152684230825743, guid: 1d03133378509d14f8ded5fdae058c21, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.55

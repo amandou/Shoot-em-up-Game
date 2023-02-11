@@ -10,4 +10,9 @@ public class EnemyController : MonoBehaviour
     {
         return enemy;
     }
+
+    public int GetEnemyPoints()
+    {
+        return enemy.Points;
+    }
 }
