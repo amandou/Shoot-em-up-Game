@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemySO enemy;
 
-
     public EnemySO getEnemySO()
     {
         return enemy;
