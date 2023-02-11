@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private List<Transform> primaryWeaponSpawnPoints = new List<Transform>();
     [SerializeField] private List<Transform> secondaryWeaponSpawnPoints = new List<Transform>();
 
-    public BulletSo singleShotBulet;
-    public BulletSo tripleShotBulet;
+    public BulletSO singleShotBulet;
+    public BulletSO tripleShotBulet;
 
     private bool _canShoot = true;
     private Rigidbody2D playerRigidbody;
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         Shoot(secondaryWeaponSpawnPoints, tripleShotBulet);
     }
 
-    private void Shoot(List<Transform> spawnPoints, BulletSo bulletSo)
+    private void Shoot(List<Transform> spawnPoints, BulletSO bulletSo)
     {
         if (_canShoot)
         {

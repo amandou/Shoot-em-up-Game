@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Bullet", menuName = "ScriptableObjects/BulletSo", order = 0)]
-public class BulletSo : ScriptableObject
+[CreateAssetMenu(fileName = "Bullet", menuName = "ScriptableObjects/BulletSO", order = 0)]
+public class BulletSO : ScriptableObject
 {
     [SerializeField] private string bulletName;
     [SerializeField] private float speed;
