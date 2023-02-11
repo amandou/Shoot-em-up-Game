@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
     public Transform shootTransform;
 
     [SerializeField] private float speed;
-    [SerializeField] private float rotation;
-    [SerializeField] private float shootCoolDown;
 
     [SerializeField] private List<Transform> primaryWeaponSpawnPoints = new List<Transform>();
     [SerializeField] private List<Transform> secondaryWeaponSpawnPoints = new List<Transform>();
