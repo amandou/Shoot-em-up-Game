@@ -24,6 +24,7 @@ public abstract class HealthSystem : MonoBehaviour
 
     protected virtual void TakeDamage(int damage)
     {
+        Debug.Log("Base Take Damage");
         if (!canTakeDamage) return;
         Health -= damage;
         CheckDeath();
@@ -32,12 +33,14 @@ public abstract class HealthSystem : MonoBehaviour
 
     protected virtual void CheckDeath()
     {
+        Debug.Log("Check");
         if (Health > 0) return;
         Kill();
     }
 
     protected virtual void Kill()
     {
+        Debug.Log("Kill");
         Destroy(gameObject);
     }
 

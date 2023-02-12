@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerHeath : HealthSystem
 {
+    [SerializeField]private HealthBar healthBar;
+
+    private void Start()
+    {
+       
+    }
+
     protected override void InicializeStatus()
     {
+        healthBar.InicializeHealthBar(maxHealth);
         base.InicializeStatus();
     }
 
     protected override void TakeDamage(int damage)
     {
         // TODO: Add VFX
-        base.TakeDamage(1);
+        healthBar.UpdateHealthBar(maxHealth, damage);
+        base.TakeDamage(damage);
     }
 
     protected override void Kill()
