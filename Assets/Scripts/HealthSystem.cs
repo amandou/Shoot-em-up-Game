@@ -25,7 +25,7 @@ public abstract class HealthSystem : MonoBehaviour
     protected virtual void TakeDamage(int damage)
     {
         Debug.Log("Base Take Damage");
-        if (!canTakeDamage) return;
+        if (!canTakeDamage || isDead) return;
         Health -= damage;
         CheckDeath();
         InvencibilityCooldown(invencibilityCooldown);
@@ -40,8 +40,7 @@ public abstract class HealthSystem : MonoBehaviour
 
     protected virtual void Kill()
     {
-        Debug.Log("Kill");
-        Destroy(gameObject);
+        isDead = true;
     }
 
     private IEnumerator InvencibilityCooldown(float invencibilityCooldown)
@@ -69,4 +68,9 @@ public abstract class HealthSystem : MonoBehaviour
         set => health = value;
     }
 
+    public int MaxHealth
+    {
+        get => maxHealth;
+        set => maxHealth = value;
+    }
 }

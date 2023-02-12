@@ -7,7 +7,7 @@ public class EnemyHealth : HealthSystem
 {
     [SerializeField] private HealthBar healthBar;
 
-    public static event Action<int> onScoreUpdate;
+    public static event Action onEnemyDeath;
 
     protected override void InicializeStatus()
     {
@@ -25,9 +25,7 @@ public class EnemyHealth : HealthSystem
 
     protected override void Kill()
     {
-        // TODO: Add VFX
-        int points = gameObject.GetComponent<EnemyController>().GetEnemyPoints();
-        onScoreUpdate?.Invoke(points);
+        gameObject.GetComponent<EnemyController>().Death();
         base.Kill();
     }
 
