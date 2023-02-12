@@ -19,17 +19,6 @@ public class EnemyController : MonoBehaviour
     {
         // TODO: Add VFX
         onScoreUpdate?.Invoke(GetEnemyPoints());
-        gameObject.GetComponent<ShipStatus>().ChangeShipSpriteToDeath(0);
         Destroy(gameObject, 2f);
-    }
-
-    private void OnEnable()
-    {
-        EnemyHealth.onEnemyDeath += Death;
-    }
-
-    private void OnDisable()
-    {
-        EnemyHealth.onEnemyDeath -= Death;
     }
 }

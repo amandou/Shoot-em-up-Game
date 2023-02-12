@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,14 @@ using UnityEngine;
 public class PlayerHeath : HealthSystem
 {
     [SerializeField]private HealthBar healthBar;
+    [SerializeField] private Animator _animator;
+
+    public static event Action onPlayerDeath;
 
     private void Start()
     {
-       
+        _animator = GetComponent<Animator>();
+        InicializeStatus();
     }
 
     protected override void InicializeStatus()
@@ -20,13 +25,21 @@ public class PlayerHeath : HealthSystem
     protected override void TakeDamage(int damage)
     {
         // TODO: Add VFX
-        healthBar.UpdateHealthBar(maxHealth, damage);
         base.TakeDamage(damage);
+        healthBar.UpdateHealthBar(health);
+
+        if (health <= maxHealth * 0.5)
+            _animator.SetTrigger("50PercentHealth");
+        else if (health <= maxHealth * 0.75)
+            _animator.SetTrigger("75PercentHealth");
+
     }
 
     protected override void Kill()
     {
         // TODO: Add VFX
+        _animator.SetTrigger("Death");
+        gameObject.GetComponent<PlayerController>().Death();
         base.Kill();
     }
 

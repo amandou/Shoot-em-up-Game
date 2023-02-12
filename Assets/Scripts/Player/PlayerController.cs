@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private bool _isDead;
     [SerializeField] private float speed;
+
 
     private Rigidbody2D playerRigidbody;
 
     void Start()
     {
+        _isDead = false;
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        if (_isDead) return;
         PlayerMovement();
     }
 
@@ -69,4 +73,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void Death()
+    {
+        // TODO: Add VFX
+        _isDead = true;
+        Destroy(gameObject, 2f);
+    }
 }

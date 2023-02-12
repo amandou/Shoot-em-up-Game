@@ -10,7 +10,7 @@ public abstract class HealthSystem : MonoBehaviour
     [SerializeField] private bool isDead;
     [SerializeField] protected float invencibilityCooldown;
 
-    private void Start()
+    protected virtual void Start()
     {
         InicializeStatus();
     }
