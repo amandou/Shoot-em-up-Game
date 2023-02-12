@@ -17,12 +17,12 @@ public class EnemyHealth : HealthSystem
         base.TakeDamage(1);
     }
 
-    protected override void CheckDeathAndKill()
+    protected override void Kill()
     {
         // TODO: Add VFX
         int points = gameObject.GetComponent<EnemyController>().GetEnemyPoints();
         onScoreUpdate?.Invoke(points);
-        base.CheckDeathAndKill();
+        base.Kill();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

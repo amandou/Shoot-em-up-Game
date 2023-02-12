@@ -15,10 +15,10 @@ public class PlayerHeath : HealthSystem
         base.TakeDamage(1);
     }
 
-    protected override void CheckDeathAndKill()
+    protected override void Kill()
     {
         // TODO: Add VFX
-        base.CheckDeathAndKill();
+        base.Kill();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

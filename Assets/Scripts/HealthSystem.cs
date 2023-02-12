@@ -26,13 +26,18 @@ public abstract class HealthSystem : MonoBehaviour
     {
         if (!canTakeDamage) return;
         Health -= damage;
-        CheckDeathAndKill();
+        CheckDeath();
         InvencibilityCooldown(invencibilityCooldown);
     }
 
-    protected virtual void CheckDeathAndKill()
+    protected virtual void CheckDeath()
     {
         if (Health > 0) return;
+        Kill();
+    }
+
+    protected virtual void Kill()
+    {
         Destroy(gameObject);
     }
 
