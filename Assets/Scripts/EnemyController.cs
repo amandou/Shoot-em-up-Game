@@ -21,4 +21,10 @@ public class EnemyController : MonoBehaviour
         onScoreUpdate?.Invoke(GetEnemyPoints());
         Destroy(gameObject, 2f);
     }
+
+    public EnemySO Enemy
+    {
+        get => enemy;
+        set => enemy = value;
+    }
 }

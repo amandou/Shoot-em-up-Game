@@ -7,17 +7,20 @@ public class EnemyHealth : HealthSystem
 {
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private Animator _animator;
+    private EnemySO enemy;
 
-    private void Start()
+    private new void Start()
     {
+        enemy = gameObject.GetComponent<EnemyController>().Enemy;
         _animator = GetComponent<Animator>();
         InicializeStatus();
     }
 
     protected override void InicializeStatus()
     {
-        healthBar.InicializeHealthBar(maxHealth);
         base.InicializeStatus();
+        healthBar.InicializeHealthBar(maxHealth);
+        
     }
 
     protected override void TakeDamage(int damage)

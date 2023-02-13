@@ -17,4 +17,4 @@ MonoBehaviour:
   coolDown: 5
   damage: 6
   points: 25
-  health: 100
+  maxHealth: 10

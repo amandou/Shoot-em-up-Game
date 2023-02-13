@@ -8,7 +8,7 @@ public class EnemySO : ScriptableObject
     [SerializeField] private float coolDown;
     [SerializeField] private int damage;
     [SerializeField] private int points;
-    [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
 
 
     public string EnemyName
@@ -41,9 +41,9 @@ public class EnemySO : ScriptableObject
         set => points = value;
     }
 
-    public int Health
+    public int MaxHealth
     {
-        get => health;
-        set => health = value;
+        get => maxHealth;
+        set => maxHealth = value;
     }
 }

@@ -24,16 +24,14 @@ public abstract class HealthSystem : MonoBehaviour
 
     protected virtual void TakeDamage(int damage)
     {
-        Debug.Log("Base Take Damage");
         if (!canTakeDamage || isDead) return;
         Health -= damage;
         CheckDeath();
-        InvencibilityCooldown(invencibilityCooldown);
+        StartCoroutine(InvencibilityCooldown(invencibilityCooldown));
     }
 
     protected virtual void CheckDeath()
     {
-        Debug.Log("Check");
         if (Health > 0) return;
         Kill();
     }

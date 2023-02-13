@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHeath : HealthSystem
+public class PlayerHealth : HealthSystem
 {
     [SerializeField]private HealthBar healthBar;
     [SerializeField] private Animator _animator;
