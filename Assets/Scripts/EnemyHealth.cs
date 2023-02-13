@@ -7,23 +7,25 @@ public class EnemyHealth : HealthSystem
 {
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private Animator _animator;
+    private EnemySO enemy;
 
-    private void Start()
+    private new void Start()
     {
+        enemy = gameObject.GetComponent<EnemyController>().Enemy;
         _animator = GetComponent<Animator>();
         InicializeStatus();
     }
 
     protected override void InicializeStatus()
     {
-        healthBar.InicializeHealthBar(maxHealth);
         base.InicializeStatus();
+        healthBar.InicializeHealthBar(maxHealth);
+        
     }
 
     protected override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        // TODO: Add VFX
 
         healthBar.UpdateHealthBar(health);
 
@@ -31,23 +33,21 @@ public class EnemyHealth : HealthSystem
             _animator.SetTrigger("50PercentHealth");
         else if (health <= maxHealth * 0.75)
             _animator.SetTrigger("75PercentHealth");
-
     }
 
     protected override void Kill()
     {
+        base.Kill();
         _animator.SetTrigger("Death");
         gameObject.GetComponent<EnemyController>().Death();
-        base.Kill();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (collision.gameObject.tag)
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            case "PlayerBullet":
-                TakeDamage(1);
-                break;
+            TakeDamage(1);
         }
+        
     }
 }

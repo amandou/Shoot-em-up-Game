@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ChaserEnemy
   m_EditorClassIdentifier: 
   enemyName: Chaser
-  speed: 100
-  coolDown: 5
-  damage: 6
+  speed: 80
+  coolDown: 10
+  damage: 2
   points: 50
-  health: 100
+  maxHealth: 15

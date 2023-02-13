@@ -7,7 +7,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private List<Transform> primaryWeaponSpawnPoints = new List<Transform>();
     [SerializeField] private List<Transform> secondaryWeaponSpawnPoints = new List<Transform>();
 
-    private bool _canShoot;
+    [SerializeField] private bool _canShoot;
 
     public BulletSO singleShotBulet;
     public BulletSO tripleShotBulet;

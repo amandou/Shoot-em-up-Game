@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHeath : HealthSystem
+public class PlayerHealth : HealthSystem
 {
     [SerializeField]private HealthBar healthBar;
     [SerializeField] private Animator _animator;
@@ -47,12 +47,17 @@ public class PlayerHeath : HealthSystem
     {
         switch (collision.gameObject.tag)
         {
-            case "EnemyBullet":
-                TakeDamage(1);
-                break;
             case "Enemy":
                 TakeDamage(1);
                 break;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyBullet"))
+        {
+            TakeDamage(1);
+            Destroy(collision.gameObject);
         }
     }
 
