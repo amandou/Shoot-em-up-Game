@@ -5,15 +5,17 @@ using UnityEngine;
 public class ChaserEnemy : MonoBehaviour
 {
     private Rigidbody2D enemyRigidbody;
-    private EnemySO enemy;
+    private EnemySO enemySO;
+    private EnemyController enemyController;
     private bool _canChase = true;
-    [SerializeField] private float coolDown = 0.5f;
 
     public GameObject player;
+    public GameObject explosionPrefab;
 
     void Start()
     {
-        enemy = gameObject.GetComponent<EnemyController>().Enemy;
+        enemyController = gameObject.GetComponent<EnemyController>();
+        enemySO = gameObject.GetComponent<EnemyController>().Enemy;
         enemyRigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -32,15 +34,18 @@ public class ChaserEnemy : MonoBehaviour
         direction.Normalize();
 
         enemyRigidbody.rotation = angle;
-        enemyRigidbody.velocity = enemy.Speed * Time.deltaTime * direction;
+        enemyRigidbody.velocity = enemySO.Speed * Time.deltaTime * direction;
 
         // TODO: Use a corotine to make the chasing movement slowy
     }
 
-    private IEnumerator ChasingCoolDown(float coolDown)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        _canChase = false;
-        yield return new WaitForSeconds(coolDown);
-        _canChase = true;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _canChase = false;
+            enemyController.Death();
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
