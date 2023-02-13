@@ -207,7 +207,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5d63452e9aee8cb4f953852373844da7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27348,6 +27348,7 @@ GameObject:
   - component: {fileID: 127666930}
   - component: {fileID: 127666934}
   - component: {fileID: 127666935}
+  - component: {fileID: 127666938}
   - component: {fileID: 127666937}
   m_Layer: 0
   m_Name: SwordsEnemy
@@ -27376,7 +27377,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &127666931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27468,6 +27469,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2022848416}
+  - {fileID: 1799427310}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27484,6 +27486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 4f3b733cb329fe74cae2bd33394fa9b3, type: 2}
+  deathAnimation: {fileID: 3913727641190798990, guid: db53cad921ae65a4e908345f39aba3b7, type: 3}
 --- !u!114 &127666935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27497,7 +27500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
-  maxHealth: 20
+  maxHealth: 10
   canTakeDamage: 1
   isDead: 0
   invencibilityCooldown: 0.5
@@ -27523,6 +27526,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &127666938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127666929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9d34bf2a16fc54395764917bbdfc30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canShoot: 1
+  _shootCooldown: 3
+  player: {fileID: 1957276522}
+  bulletPrefab: {fileID: 4221975376070287205, guid: e7702744bf4a4224db1d0b41e5564448, type: 3}
+  spawnPoint: {fileID: 1799427310}
 --- !u!1 &261579697
 GameObject:
   m_ObjectHideFlags: 0
@@ -34456,6 +34476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: f39dc218d3222c740ae167af4f0211c9, type: 2}
+  deathAnimation: {fileID: 3913727641190798990, guid: db53cad921ae65a4e908345f39aba3b7, type: 3}
 --- !u!114 &1417236364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34507,8 +34528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8852737889946d7458bcee9ff47b9542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 5
   player: {fileID: 1957276522}
+  explosionPrefab: {fileID: 6973918743031100604, guid: bfae9b3a8f9d0d34fbca544860992901, type: 3}
 --- !u!1 &1432912586
 GameObject:
   m_ObjectHideFlags: 0
@@ -34764,6 +34785,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685198889}
   m_CullTransparentMesh: 1
+--- !u!1 &1799427309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799427310}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799427310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799427309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.879, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 127666933}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835733484
 GameObject:
   m_ObjectHideFlags: 0

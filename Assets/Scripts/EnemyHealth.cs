@@ -26,7 +26,6 @@ public class EnemyHealth : HealthSystem
     protected override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        // TODO: Add VFX
 
         healthBar.UpdateHealthBar(health);
 
@@ -34,23 +33,21 @@ public class EnemyHealth : HealthSystem
             _animator.SetTrigger("50PercentHealth");
         else if (health <= maxHealth * 0.75)
             _animator.SetTrigger("75PercentHealth");
-
     }
 
     protected override void Kill()
     {
+        base.Kill();
         _animator.SetTrigger("Death");
         gameObject.GetComponent<EnemyController>().Death();
-        base.Kill();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (collision.gameObject.tag)
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            case "PlayerBullet":
-                TakeDamage(1);
-                break;
+            TakeDamage(1);
         }
+        
     }
 }

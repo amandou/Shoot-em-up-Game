@@ -47,12 +47,17 @@ public class PlayerHealth : HealthSystem
     {
         switch (collision.gameObject.tag)
         {
-            case "EnemyBullet":
-                TakeDamage(1);
-                break;
             case "Enemy":
                 TakeDamage(1);
                 break;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyBullet"))
+        {
+            TakeDamage(1);
+            Destroy(collision.gameObject);
         }
     }
 

@@ -39,6 +39,7 @@ public abstract class HealthSystem : MonoBehaviour
     protected virtual void Kill()
     {
         isDead = true;
+        canTakeDamage = false;
     }
 
     private IEnumerator InvencibilityCooldown(float invencibilityCooldown)
