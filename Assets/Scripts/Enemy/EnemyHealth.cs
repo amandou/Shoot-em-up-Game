@@ -46,7 +46,7 @@ public class EnemyHealth : HealthSystem
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            TakeDamage(1);
+            TakeDamage(3);
         }
         
     }

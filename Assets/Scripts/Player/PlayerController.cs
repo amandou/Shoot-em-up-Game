@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     private bool _isDead;
     [SerializeField] private float speed;
-
-
     private Rigidbody2D playerRigidbody;
 
     void Start()

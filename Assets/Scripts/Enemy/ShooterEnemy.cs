@@ -10,12 +10,13 @@ public class ShooterEnemy : MonoBehaviour
     [SerializeField] private bool _canShoot = true;
     [SerializeField] private float _shootCooldown;
 
-    public GameObject player;
+    private GameObject player;
     public Rigidbody2D bulletPrefab;
     public Transform spawnPoint;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         enemyController = gameObject.GetComponent<EnemyController>();
         enemySO = gameObject.GetComponent<EnemyController>().Enemy;
         enemyRigidbody = GetComponent<Rigidbody2D>();
