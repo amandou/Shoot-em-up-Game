@@ -8,8 +8,6 @@ public class PlayerHealth : HealthSystem
     [SerializeField]private HealthBar healthBar;
     [SerializeField] private Animator _animator;
 
-    public static event Action onPlayerDeath;
-
     private void Start()
     {
         _animator = GetComponent<Animator>();

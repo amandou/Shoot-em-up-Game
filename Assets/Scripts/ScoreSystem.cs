@@ -17,7 +17,7 @@ public class ScoreSystem : MonoBehaviour
     private void UpdateScore(int scoreToIncrease)
     {
         score += scoreToIncrease;
-        scoreText.text = "Score\n\n" + score;
+        scoreText.text = "Score\n" + score;
     }
 
     private void OnEnable()

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public static event Action onPlayerDie;
 
+
     void Start()
     {
         _isDead = false;
