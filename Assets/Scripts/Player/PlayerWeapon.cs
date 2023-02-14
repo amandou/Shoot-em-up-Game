@@ -20,8 +20,12 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        //SingleShoot();
-        TripleShoot();
+        SingleShoot();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            TripleShoot();
+        }
     }
 
     private void SingleShoot()

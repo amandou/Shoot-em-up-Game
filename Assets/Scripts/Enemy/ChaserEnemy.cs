@@ -9,11 +9,12 @@ public class ChaserEnemy : MonoBehaviour
     private EnemyController enemyController;
     private bool _canChase = true;
 
-    public GameObject player;
+    private GameObject player;
     public GameObject explosionPrefab;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         enemyController = gameObject.GetComponent<EnemyController>();
         enemySO = gameObject.GetComponent<EnemyController>().Enemy;
         enemyRigidbody = GetComponent<Rigidbody2D>();
