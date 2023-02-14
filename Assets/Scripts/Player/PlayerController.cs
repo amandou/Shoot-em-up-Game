@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool _isDead;
     [SerializeField] private float speed;
+    private bool _isDead;
     private Rigidbody2D playerRigidbody;
+
+    public static event Action onPlayerDie;
 
     void Start()
     {
@@ -75,6 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         // TODO: Add VFX
         _isDead = true;
+        onPlayerDie?.Invoke();
         Destroy(gameObject, 2f);
     }
 }
