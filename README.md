@@ -17,8 +17,3 @@
 
 ## Result
 ![Shoot-em-up-Game](https://github.com/amandou/Shoot-em-up-Game/blob/develop/Shooter.gif)
-
-Developed in Unity 2020.3.33f1
-
-## Links
-- https://unity.com/releases/editor/archive
