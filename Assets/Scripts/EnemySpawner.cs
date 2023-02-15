@@ -18,6 +18,10 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         _isPlayerDead = false;
+        if (MainManager.Instance != null)
+        {
+            spawnWait = MainManager.Instance.SpawnEnemyTime;
+        }
         StartCoroutine(SpawnEnemy());
     }
 

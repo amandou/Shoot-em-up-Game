@@ -15,11 +15,11 @@ public class TimeManager : MonoBehaviour
 
     public static event Action onTimeEnd;
 
+
     void Start()
     {
         timerText = GetComponent<TextMeshProUGUI>();
-        currentTime = startTime;
-        _isGameEnded = false;
+        SetTimerSettings();
     }
 
     void Update()
@@ -28,6 +28,16 @@ public class TimeManager : MonoBehaviour
 
         EndTimer();
         SetTimerText();
+    }
+
+    private void SetTimerSettings()
+    {
+        currentTime = startTime;
+        if (MainManager.Instance != null)
+        {
+            currentTime = MainManager.Instance.GameSessionTime;
+        }
+        _isGameEnded = false;
     }
 
     private void SetTimerText()
