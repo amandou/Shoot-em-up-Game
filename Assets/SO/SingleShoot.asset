@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a790066687a5f124bae0718166793ae7, type: 3}
   m_Name: SingleShoot
   m_EditorClassIdentifier: 
-  bulletName: 
-  speed: 200
+  bulletName: Single
+  speed: 250
   coolDown: 0.5
   damage: 10
-  spawnPoints:
-  - {x: 0, y: 1, z: 0}
