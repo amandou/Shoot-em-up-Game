@@ -15,4 +15,4 @@ MonoBehaviour:
   bulletName: Single
   speed: 250
   coolDown: 0.5
-  damage: 10
+  damage: 1

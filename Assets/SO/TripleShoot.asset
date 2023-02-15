@@ -15,4 +15,4 @@ MonoBehaviour:
   bulletName: Triple
   speed: 150
   coolDown: 0.8
-  damage: 8
+  damage: 3

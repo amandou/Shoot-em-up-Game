@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Shooter
   speed: 100
-  coolDown: 5
-  damage: 6
-  points: 25
-  maxHealth: 10
+  damage: 1
+  points: 1
