@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
@@ -23,8 +22,6 @@ public class EnemyController : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("Enemy Death");
-        // TODO: Add VFX
         _animator.SetTrigger("Death");
         Instantiate(deathAnimation, transform.position, Quaternion.identity);
         onScoreUpdate?.Invoke(GetEnemyPoints());

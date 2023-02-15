@@ -8,8 +8,6 @@ public class PlayerHealth : HealthSystem
     [SerializeField]private HealthBar healthBar;
     [SerializeField] private Animator _animator;
 
-    public static event Action onPlayerDeath;
-
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -24,7 +22,6 @@ public class PlayerHealth : HealthSystem
 
     protected override void TakeDamage(int damage)
     {
-        // TODO: Add VFX
         base.TakeDamage(damage);
         healthBar.UpdateHealthBar(health);
 
@@ -37,7 +34,6 @@ public class PlayerHealth : HealthSystem
 
     protected override void Kill()
     {
-        // TODO: Add VFX
         _animator.SetTrigger("Death");
         gameObject.GetComponent<PlayerController>().Death();
         base.Kill();

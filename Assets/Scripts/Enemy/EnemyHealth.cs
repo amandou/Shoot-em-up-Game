@@ -20,7 +20,6 @@ public class EnemyHealth : HealthSystem
     {
         base.InicializeStatus();
         healthBar.InicializeHealthBar(maxHealth);
-        
     }
 
     protected override void TakeDamage(int damage)
@@ -46,7 +45,8 @@ public class EnemyHealth : HealthSystem
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            TakeDamage(3);
+            int damage = collision.gameObject.GetComponent<PlayerBullet>().GetBulletDamage();
+            TakeDamage(damage);
         }
         
     }

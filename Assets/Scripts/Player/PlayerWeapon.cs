@@ -6,7 +6,6 @@ public class PlayerWeapon : MonoBehaviour
 {   
     [SerializeField] private List<Transform> primaryWeaponSpawnPoints = new List<Transform>();
     [SerializeField] private List<Transform> secondaryWeaponSpawnPoints = new List<Transform>();
-
     [SerializeField] private bool _canShoot;
 
     public BulletSO singleShotBulet;
@@ -20,11 +19,13 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        SingleShoot();
-
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z))
         {
             TripleShoot();
+        }
+        else
+        {
+            SingleShoot();
         }
     }
 
@@ -44,7 +45,12 @@ public class PlayerWeapon : MonoBehaviour
         {
             foreach (var spawnPoint in spawnPoints)
             {
-                var rotation = (transform.localEulerAngles.z - 90) * Mathf.PI / 180;
+                int angleOffset = -90;
+                if (bulletSo.BulletName == "Triple")
+                {
+                    angleOffset = -180;
+                }
+                var rotation = (transform.localEulerAngles.z + angleOffset) * Mathf.PI / 180;
                 var bulletDirection = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
 
                 Rigidbody2D bulletRigidbody = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
