@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         _isPlayerDead = false;
         _isTimeEnded = false;
         endGamePanel.SetActive(false);
-
     }
 
     public void EndGame()

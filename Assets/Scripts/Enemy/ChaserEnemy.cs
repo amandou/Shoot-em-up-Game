@@ -36,8 +36,6 @@ public class ChaserEnemy : MonoBehaviour
 
         enemyRigidbody.rotation = angle;
         enemyRigidbody.velocity = enemySO.Speed * Time.deltaTime * direction;
-
-        // TODO: Use a corotine to make the chasing movement slowy
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

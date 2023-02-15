@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
 
     public static event Action onPlayerDie;
 
-
     void Start()
     {
         _isDead = false;
@@ -77,7 +76,6 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-        // TODO: Add VFX
         _isDead = true;
         onPlayerDie?.Invoke();
         Destroy(gameObject, 2f);
