@@ -7,6 +7,7 @@ public class ScoreSystem : MonoBehaviour
 {
     [SerializeField] private int score;
     private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI endGameScoreText;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class ScoreSystem : MonoBehaviour
     {
         score += scoreToIncrease;
         scoreText.text = "Score\n" + score;
+        endGameScoreText.text = score.ToString();
     }
 
     private void OnEnable()
