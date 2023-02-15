@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerRotation();
 
-        playerRigidbody.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
+        playerRigidbody.velocity = new Vector2(direction.x * speed * Time.fixedDeltaTime, direction.y * speed * Time.fixedDeltaTime);
     }
 
     private void PlayerRotation() 
