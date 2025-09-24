@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "897754090612",
+    "firebase_url": "https://shootersofthesea-default-rtdb.firebaseio.com",
+    "project_id": "shootersofthesea",
+    "storage_bucket": "shootersofthesea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897754090612:android:ddd4a857c23936d3ab1521",
+        "android_client_info": {
+          "package_name": "com.company.shootersofthesea"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk103TXqPbbOSanorypNsQdt_OaHZzbvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
